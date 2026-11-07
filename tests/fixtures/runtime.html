@@ -6,10 +6,9 @@
   <script>
     window.log = [];
     document.addEventListener('ui:probe:ready', (e) => log.push(`ready:${e.detail.id}`));
-    document.addEventListener('ui:runtime:error', (e) => log.push(`error:${e.detail.name}`));
+    document.addEventListener('ui:runtime:error', (e) => log.push(`error:${e.detail.name}:${e.detail.error?.message}`));
     // The runtime rethrows factory errors asynchronously; record them instead of failing the page.
-    window.addEventListener('error', (e) => { log.push('uncaught'); e.preventDefault(); });
-    window.onerror = () => { log.push('uncaught'); return true; };
+    window.addEventListener('error', (e) => { log.push('uncaught:' + e.message); e.preventDefault(); });
   </script>
   <script src="/packages/ui/dist/ui.iife.min.js"></script>
   <script>

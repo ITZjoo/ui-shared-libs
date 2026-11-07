@@ -49,7 +49,10 @@ test.describe('runtime', () => {
   test('a throwing behaviour does not stop the others', async ({ page }) => {
     const entries = await log(page);
     expect(entries).toEqual(expect.arrayContaining(['init:x', 'init:a', 'init:b']));
-    expect(await count(page, 'error:boom')).toBe(1);
+    expect(await count(page, 'error:boom:boom')).toBe(1);
+    await expect.poll(async () => (await log(page)).filter((e) => e.startsWith('uncaught:') && e.includes('boom')).length).toBe(1);
+    expect(await page.evaluate(() => UI.get(document.querySelector('#x'), 'boom'))).toBeUndefined();
+    expect(await page.evaluate(() => UI.get(document.querySelector('#x'), 'probe') !== undefined)).toBe(true);
   });
 
   test('the observer still runs after a throwing first pass', async ({ page }) => {

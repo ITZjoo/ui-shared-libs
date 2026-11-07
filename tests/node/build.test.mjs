@@ -17,10 +17,18 @@ test('build writes every bundle', async () => {
   assert.ok((await readdir(out.outDir)).includes('components'));
 });
 
-test('every CSS bundle starts with the layer order', async () => {
-  for (const file of out.files.filter((f) => f.endsWith('.css') && !f.endsWith('.min.css'))) {
+test('every CSS bundle starts with the layer order, exactly once', async () => {
+  const strip = (v) => v.replace(/\s+/g, '');
+  const wanted = strip(LAYERS);
+  for (const file of out.files.filter((f) => f.endsWith('.css'))) {
     const css = await readFile(join(out.outDir, file), 'utf8');
-    assert.ok(css.trimStart().startsWith(LAYERS), `${file} starts with: ${css.slice(0, 80)}`);
+    if (file.endsWith('.min.css')) {
+      assert.ok(strip(css).startsWith(wanted), `${file} starts with: ${css.slice(0, 80)}`);
+    } else {
+      assert.ok(css.trimStart().startsWith(LAYERS), `${file} starts with: ${css.slice(0, 80)}`);
+    }
+    const count = strip(css).split('ui.reset,ui.tokens').length - 1;
+    assert.equal(count, 1, `${file} has the layer order ${count} times`);
   }
 });
 

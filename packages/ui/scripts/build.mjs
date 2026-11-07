@@ -30,7 +30,10 @@ async function bundleCss(filename, code) {
   const result = {};
   for (const minify of [false, true]) {
     const { code: out } = await bundleAsync({ filename, minify, targets: cssTargets, resolver });
-    result[minify ? 'min' : 'full'] = Buffer.from(out).toString();
+    let css = Buffer.from(out).toString();
+    // Lightning CSS drops the bare layer statement once the layers have content; every bundle needs it.
+    if (!css.replace(/\s+/g, '').startsWith(LAYERS.replace(/\s+/g, ''))) css = LAYERS + (minify ? '' : '\n') + css;
+    result[minify ? 'min' : 'full'] = css;
   }
   return result;
 }

@@ -106,6 +106,19 @@ rethrown asynchronously, and a `ui:runtime:error` event with
 
 Chrome and Edge 123, Firefox 125, Safari 17.5, and newer.
 
+## AI coding assistants
+
+The package ships a skill that teaches an assistant the markup, the rules
+and what not to invent: `skills/ui-shared-libs/`. For Claude Code, copy it
+into your project:
+
+```
+cp -r node_modules/@ui-shared-libs/ui/skills/ui-shared-libs .claude/skills/
+```
+
+Other assistants can read `skills/ui-shared-libs/SKILL.md` and
+`references/components.md` as plain Markdown.
+
 ## Licence
 
 MIT

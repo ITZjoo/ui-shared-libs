@@ -14,7 +14,7 @@ before(async () => {
 });
 
 test('the tarball holds dist, README, LICENSE and nothing from src', () => {
-  for (const f of ['package.json', 'README.md', 'LICENSE', 'dist/ui.css', 'dist/ui.min.css', 'dist/utilities.css', 'dist/utilities.min.css', 'dist/ui.iife.min.js', 'dist/components/button.css']) {
+  for (const f of ['package.json', 'README.md', 'LICENSE', 'dist/ui.css', 'dist/ui.min.css', 'dist/utilities.css', 'dist/utilities.min.css', 'dist/ui.iife.min.js', 'dist/components/button.css', 'skills/ui-shared-libs/SKILL.md', 'skills/ui-shared-libs/references/components.md']) {
     assert.ok(files.includes(f), `missing ${f}`);
   }
   assert.deepEqual(files.filter((f) => f.startsWith('src/') || f.startsWith('scripts/')), []);

@@ -11,9 +11,9 @@ export const Api = {
     variant: { control: 'inline-radio', options: ['info', 'success', 'warning', 'danger'] },
     title: { control: 'text' },
     message: { control: 'text' },
-    duration: { control: 'text', description: 'Milliseconds, or a CSS time like `4s`. `0` keeps it open.' },
+    duration: { control: 'number', description: 'Milliseconds. `0` keeps it open.' },
   },
-  args: { variant: 'success', title: 'Saved', message: 'Member updated.', duration: '4s' },
+  args: { variant: 'success', title: 'Saved', message: 'Member updated.', duration: 4000 },
   render: (args) => {
     const button = document.createElement('button');
     button.type = 'button';
@@ -25,7 +25,7 @@ export const Api = {
   parameters: {
     docs: {
       source: {
-        code: "UI.toast({ title: 'Saved', message: 'Member updated.', variant: 'success', duration: '4s' });",
+        code: "UI.toast({ title: 'Saved', message: 'Member updated.', variant: 'success', duration: 4000 });",
         language: 'js',
       },
     },

@@ -21,7 +21,7 @@
     "./ui.iife.min.js": "./dist/ui.iife.min.js",
     "./package.json": "./package.json"
   },
-  "files": ["dist"],
+  "files": ["dist", "skills"],
   "sideEffects": true,
   "scripts": {
     "build": "node scripts/build.mjs",

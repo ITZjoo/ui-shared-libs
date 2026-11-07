@@ -15,4 +15,8 @@ theme toolbar and an a11y panel. It reads `packages/ui/src` directly and is not
 published to npm. The static docs in `docs/` stay the reference and the test
 fixtures.
 
+AI assistants: `.claude/skills/ui-shared-libs-dev` covers working on this
+repo; `packages/ui/skills/ui-shared-libs` (shipped on npm) covers building
+apps with the kit.
+
 Design: [docs/specs](docs/specs). Plans: [docs/plans](docs/plans).

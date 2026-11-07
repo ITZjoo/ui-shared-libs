@@ -1,1 +1,2 @@
-/* One @import per component file. */
+@import "./close.css";
+@import "./button.css";

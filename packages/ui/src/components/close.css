@@ -1,0 +1,25 @@
+.ui-close {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  inline-size: var(--ui-close-size, 1.75rem);
+  block-size: var(--ui-close-size, 1.75rem);
+  padding: 0;
+  border: 0;
+  border-radius: var(--ui-radius-lg);
+  background-color: transparent;
+  color: var(--ui-fg-muted);
+  cursor: pointer;
+  transition: background-color var(--ui-duration-fast) var(--ui-ease), color var(--ui-duration-fast) var(--ui-ease);
+
+  &::before {
+    content: "";
+    inline-size: 1rem;
+    block-size: 1rem;
+    background-color: currentColor;
+    mask: var(--ui-glyph-x) center / contain no-repeat;
+  }
+
+  &:hover { background-color: var(--ui-surface-sunken); color: var(--ui-fg); }
+  &:focus-visible { outline: none; box-shadow: 0 0 0 var(--ui-focus-width) var(--ui-focus-ring); }
+}

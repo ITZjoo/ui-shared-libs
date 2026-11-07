@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Button · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Button</h1>
+    <p class="docs-lead">Works on <code>&lt;button&gt;</code> and <code>&lt;a&gt;</code>. No class for outline: it is the default.</p>
+
+    <section class="docs-example" aria-labelledby="ex-variants">
+      <h2 id="ex-variants">Variants</h2>
+      <div class="docs-demo">
+        <button type="button" class="ui-btn ui-btn--primary" id="btn-primary">Save</button>
+        <button type="button" class="ui-btn ui-btn--secondary" id="btn-secondary">Draft</button>
+        <button type="button" class="ui-btn ui-btn--outline" id="btn-outline">Cancel</button>
+        <button type="button" class="ui-btn ui-btn--ghost" id="btn-ghost">Skip</button>
+        <button type="button" class="ui-btn ui-btn--danger" id="btn-danger">Delete</button>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-sizes">
+      <h2 id="ex-sizes">Sizes</h2>
+      <div class="docs-demo">
+        <button type="button" class="ui-btn ui-btn--primary ui-btn--sm" id="btn-sm">Small</button>
+        <button type="button" class="ui-btn ui-btn--primary">Medium</button>
+        <button type="button" class="ui-btn ui-btn--primary ui-btn--lg" id="btn-lg">Large</button>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-states">
+      <h2 id="ex-states">States</h2>
+      <div class="docs-demo">
+        <button type="button" class="ui-btn ui-btn--primary" aria-busy="true" id="btn-busy">Saving</button>
+        <button type="button" class="ui-btn ui-btn--primary" disabled id="btn-disabled">Disabled</button>
+        <a class="ui-btn" href="#ex-states">Link as button</a>
+        <button type="button" class="ui-btn ui-btn--icon" aria-label="Close"><span class="ui-close" aria-hidden="true"></span></button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

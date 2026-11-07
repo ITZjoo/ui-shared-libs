@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkbox, radio, switch · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Checkbox, radio, switch</h1>
+    <p class="docs-lead">Native inputs with a class. Wrap them in <code>.ui-choice</code> to label them.</p>
+
+    <section class="docs-example" aria-labelledby="ex-checkbox">
+      <h2 id="ex-checkbox">Checkbox</h2>
+      <div class="docs-demo docs-demo--stack">
+        <label class="ui-choice">
+          <input type="checkbox" class="ui-checkbox" id="terms">
+          <span class="ui-choice__text">
+            <span class="ui-choice__label">I agree to the terms</span>
+            <span class="ui-choice__desc">You can change this later.</span>
+          </span>
+        </label>
+        <label class="ui-choice">
+          <input type="checkbox" class="ui-checkbox" id="all">
+          <span class="ui-choice__label">Select all</span>
+        </label>
+        <label class="ui-choice">
+          <input type="checkbox" class="ui-checkbox" id="consent" aria-invalid="true">
+          <span class="ui-choice__label">Consent required</span>
+        </label>
+        <label class="ui-choice" id="choice-disabled">
+          <input type="checkbox" class="ui-checkbox" disabled>
+          <span class="ui-choice__label">Unavailable</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-radio">
+      <h2 id="ex-radio">Radio</h2>
+      <div class="docs-demo docs-demo--stack">
+        <fieldset class="ui-choice-group ui-choice-group--horizontal">
+          <legend class="ui-label">Payment</legend>
+          <label class="ui-choice"><input type="radio" class="ui-radio" name="pay" value="cash" checked><span class="ui-choice__label">Cash</span></label>
+          <label class="ui-choice"><input type="radio" class="ui-radio" name="pay" value="transfer"><span class="ui-choice__label">Transfer</span></label>
+        </fieldset>
+        <fieldset class="ui-choice-group">
+          <legend class="ui-label">Plan</legend>
+          <label class="ui-choice ui-choice--card"><input type="radio" class="ui-radio" name="plan" value="basic" checked><span class="ui-choice__text"><span class="ui-choice__label">Basic</span><span class="ui-choice__desc">Up to 100 members.</span></span></label>
+          <label class="ui-choice ui-choice--card" id="plan-pro"><input type="radio" class="ui-radio" name="plan" value="pro"><span class="ui-choice__text"><span class="ui-choice__label">Pro</span><span class="ui-choice__desc">Unlimited members.</span></span></label>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-switch">
+      <h2 id="ex-switch">Switch</h2>
+      <div class="docs-demo docs-demo--stack">
+        <label class="ui-choice">
+          <input type="checkbox" role="switch" class="ui-switch">
+          <span class="ui-choice__label">Email notifications</span>
+        </label>
+        <label class="ui-choice">
+          <input type="checkbox" role="switch" class="ui-switch ui-switch--sm" checked>
+          <span class="ui-choice__label">Compact</span>
+        </label>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

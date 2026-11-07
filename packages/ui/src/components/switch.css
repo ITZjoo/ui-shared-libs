@@ -1,0 +1,37 @@
+.ui-switch {
+  --_w: 2.75rem;
+  --_h: 1.5rem;
+  --_thumb: 1.25rem;
+
+  appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  inline-size: var(--_w);
+  block-size: var(--_h);
+  margin: 0;
+  border: 0;
+  border-radius: var(--ui-radius-full);
+  background-color: var(--ui-border-strong);
+  cursor: pointer;
+  transition: background-color var(--ui-duration) var(--ui-ease);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-block-start: calc((var(--_h) - var(--_thumb)) / 2);
+    inset-inline-start: calc((var(--_h) - var(--_thumb)) / 2);
+    inline-size: var(--_thumb);
+    block-size: var(--_thumb);
+    border-radius: var(--ui-radius-full);
+    background-color: var(--ui-thumb);
+    box-shadow: var(--ui-shadow-sm);
+    transition: transform var(--ui-duration-slow) var(--ui-ease-spring);
+  }
+
+  &:checked { background-color: var(--ui-primary); }
+  &:checked::before { transform: translateX(calc(var(--_w) - var(--_h))); }
+  &:focus-visible { outline: none; box-shadow: 0 0 0 var(--ui-focus-width) var(--ui-focus-ring); }
+  &:disabled { cursor: not-allowed; }
+}
+.ui-switch--sm { --_w: 2.25rem; --_h: 1.25rem; --_thumb: 1rem; }
+.ui-switch--lg { --_w: 3.25rem; --_h: 1.75rem; --_thumb: 1.5rem; }

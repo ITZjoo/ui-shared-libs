@@ -10,9 +10,17 @@ function region() {
     el.className = 'ui-toast-region';
     el.setAttribute('role', 'region');
     el.setAttribute('aria-label', 'Notifications');
+    el.setAttribute('aria-live', 'polite');
     document.body.append(el);
   }
   return el;
+}
+
+// Create the live region ahead of the first toast: a region inserted together with its
+// content is often not announced. Without a body yet, wait for DOMContentLoaded.
+export function prepareRegion(doc = document) {
+  if (doc.body) region();
+  else doc.addEventListener('DOMContentLoaded', () => region(), { once: true });
 }
 
 // A countdown that runs only while neither the pointer nor focus is on the toast.
@@ -94,7 +102,8 @@ export function toast({ title = '', message = '', variant = 'info', duration = D
   const kind = VARIANTS.has(variant) ? variant : 'info';
   const el = document.createElement('div');
   el.className = `ui-toast ui-toast--${kind}`;
-  el.setAttribute('role', kind === 'danger' ? 'alert' : 'status');
+  // The region is the polite live region; only danger toasts interrupt with role="alert".
+  if (kind === 'danger') el.setAttribute('role', 'alert');
   el.dataset.ui = 'toast';
   el.dataset.duration = String(duration);
 

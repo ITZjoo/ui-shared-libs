@@ -6,7 +6,7 @@ test('UI.toast shows, then removes itself after its duration', async ({ page }) 
   await page.evaluate(() => UI.toast({ title: 'Saved', message: 'Member updated.', variant: 'success', duration: 400 }));
   const toast = page.locator('.ui-toast-region .ui-toast--success');
   await expect(toast).toBeVisible();
-  await expect(toast).toHaveAttribute('role', 'status');
+  expect(await toast.getAttribute('role')).toBeNull();
   await expect(toast).toContainText('Member updated.');
   await expect(toast).toHaveCount(0, { timeout: 3000 });
 });
@@ -94,4 +94,22 @@ test('unknown variants fall back to info; danger is an alert', async ({ page }) 
   });
   await expect(page.locator('.ui-toast', { hasText: 'odd' })).toHaveClass(/ui-toast--info/);
   await expect(page.locator('.ui-toast', { hasText: 'bad' })).toHaveAttribute('role', 'alert');
+});
+
+test('the live region exists on page load, before any toast', async ({ page }) => {
+  await page.goto('/docs/components/button.html');
+  const region = page.locator('.ui-toast-region');
+  await expect(region).toHaveCount(1);
+  await expect(region).toHaveAttribute('role', 'region');
+  await expect(region).toHaveAttribute('aria-label', 'Notifications');
+  await expect(region).toHaveAttribute('aria-live', 'polite');
+  expect(await region.locator('.ui-toast').count()).toBe(0);
+});
+
+test('toast() still works if the region was removed', async ({ page }) => {
+  await page.evaluate(() => {
+    document.querySelector('.ui-toast-region').remove();
+    UI.toast({ message: 'Again', duration: 0 });
+  });
+  await expect(page.locator('.ui-toast-region[aria-live="polite"] .ui-toast', { hasText: 'Again' })).toHaveCount(1);
 });

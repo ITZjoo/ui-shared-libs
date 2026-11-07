@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alert · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Alert</h1>
+    <p class="docs-lead">Inline messages. Add <code>data-ui-dismissible="alert"</code> and a <code>data-ui-dismiss</code> button to let people close one (needs ui.js).</p>
+    <section class="docs-example" aria-labelledby="ex-alert">
+      <h2 id="ex-alert">Variants</h2>
+      <div class="docs-demo docs-demo--stack">
+        <div class="ui-alert" role="status">
+          <div class="ui-alert__body">
+            <p class="ui-alert__title">Maintenance tonight</p>
+            <p class="ui-alert__text">The app is read-only from 22:00 to 23:00.</p>
+          </div>
+        </div>
+        <div class="ui-alert ui-alert--success" role="status"><div class="ui-alert__body"><p class="ui-alert__text">Your payment was received.</p></div></div>
+        <div class="ui-alert ui-alert--warning" role="status" id="alert-warning"><div class="ui-alert__body"><p class="ui-alert__text">Your membership ends in 7 days.</p></div></div>
+        <div class="ui-alert ui-alert--danger" role="alert" data-ui-dismissible="alert" id="alert-dismissible">
+          <div class="ui-alert__body">
+            <p class="ui-alert__title">Payment failed</p>
+            <p class="ui-alert__text">The bank declined the transfer.</p>
+          </div>
+          <button type="button" class="ui-close" data-ui-dismiss aria-label="Dismiss"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

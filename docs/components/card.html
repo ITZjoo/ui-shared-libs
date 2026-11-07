@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Card · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Card</h1>
+    <p class="docs-lead">A surface with a border and a soft shadow.</p>
+    <section class="docs-example" aria-labelledby="ex-card">
+      <h2 id="ex-card">Card</h2>
+      <div class="docs-demo docs-demo--stack">
+        <article class="ui-card" id="card-default">
+          <header class="ui-card__header">
+            <div>
+              <h3 class="ui-card__title">Monthly savings</h3>
+              <p class="ui-card__desc">Due on the 10th.</p>
+            </div>
+            <span class="ui-badge ui-badge--success">Paid</span>
+          </header>
+          <p>Rp 150.000 received on 2 November.</p>
+          <footer class="ui-card__footer">
+            <button type="button" class="ui-btn">Details</button>
+            <button type="button" class="ui-btn ui-btn--primary">Download receipt</button>
+          </footer>
+        </article>
+        <div class="ui-card ui-card--sm" id="card-sm">
+          <p>A small card</p>
+          <div class="ui-card ui-card--flat" id="card-nested">A default card inside it keeps its own padding.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

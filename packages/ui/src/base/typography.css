@@ -1,1 +1,10 @@
-/* Document defaults. */
+body {
+  font-family: var(--ui-font-sans);
+  font-size: var(--ui-text-base);
+  line-height: var(--ui-leading-base);
+  color: var(--ui-fg);
+  background-color: var(--ui-bg);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background-color: var(--ui-primary-subtle); color: var(--ui-fg); }
+:focus-visible { outline: var(--ui-focus-width) solid var(--ui-focus-ring); outline-offset: 2px; }

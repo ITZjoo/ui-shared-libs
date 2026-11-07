@@ -1,1 +1,6 @@
-/* Colour scheme switching. */
+/* The device decides by default; data-theme or a scope class forces one. */
+:root { color-scheme: light dark; }
+:root[data-theme="light"],
+.ui-theme-light { color-scheme: light; }
+:root[data-theme="dark"],
+.ui-theme-dark { color-scheme: dark; }

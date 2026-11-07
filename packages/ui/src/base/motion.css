@@ -1,1 +1,7 @@
-/* Shared keyframes and reduced motion. */
+@keyframes ui-spin { to { transform: rotate(1turn); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after { transition-duration: 0.01ms; scroll-behavior: auto; }
+}

@@ -1,1 +1,72 @@
-/* Semantic tokens: what components read. */
+:root,
+::backdrop {
+  --ui-bg: light-dark(var(--ui-gray-50), var(--ui-gray-950));
+  --ui-surface: light-dark(var(--ui-white), var(--ui-gray-900));
+  --ui-surface-raised: light-dark(var(--ui-white), var(--ui-gray-800));
+  --ui-surface-sunken: light-dark(var(--ui-gray-100), var(--ui-gray-950));
+  --ui-overlay: color-mix(in srgb, var(--ui-gray-950) 55%, transparent);
+
+  --ui-fg: light-dark(var(--ui-gray-900), var(--ui-gray-50));
+  --ui-fg-muted: light-dark(var(--ui-gray-500), var(--ui-gray-400));
+  --ui-fg-subtle: light-dark(var(--ui-gray-400), var(--ui-gray-500));
+  --ui-border: light-dark(var(--ui-gray-200), var(--ui-gray-800));
+  --ui-border-strong: light-dark(var(--ui-gray-300), var(--ui-gray-700));
+  --ui-thumb: light-dark(var(--ui-white), var(--ui-gray-100));
+
+  --ui-primary: light-dark(var(--ui-green-700), var(--ui-green-500));
+  --ui-primary-hover: light-dark(var(--ui-green-800), var(--ui-green-400));
+  --ui-primary-active: light-dark(var(--ui-green-900), var(--ui-green-300));
+  --ui-primary-on: light-dark(var(--ui-white), var(--ui-gray-950));
+  --ui-primary-subtle: light-dark(var(--ui-green-50), color-mix(in srgb, var(--ui-green-500) 16%, transparent));
+  --ui-primary-subtle-fg: light-dark(var(--ui-green-800), var(--ui-green-300));
+  --ui-primary-border: light-dark(var(--ui-green-200), var(--ui-green-800));
+
+  --ui-success: light-dark(var(--ui-green-700), var(--ui-green-500));
+  --ui-success-hover: light-dark(var(--ui-green-800), var(--ui-green-400));
+  --ui-success-active: light-dark(var(--ui-green-900), var(--ui-green-300));
+  --ui-success-on: light-dark(var(--ui-white), var(--ui-gray-950));
+  --ui-success-subtle: light-dark(var(--ui-green-50), color-mix(in srgb, var(--ui-green-500) 16%, transparent));
+  --ui-success-subtle-fg: light-dark(var(--ui-green-800), var(--ui-green-300));
+  --ui-success-border: light-dark(var(--ui-green-200), var(--ui-green-800));
+
+  --ui-warning: light-dark(var(--ui-yellow-500), var(--ui-yellow-400));
+  --ui-warning-hover: light-dark(var(--ui-yellow-600), var(--ui-yellow-300));
+  --ui-warning-active: light-dark(var(--ui-yellow-700), var(--ui-yellow-200));
+  --ui-warning-on: light-dark(var(--ui-gray-900), var(--ui-gray-950));
+  --ui-warning-subtle: light-dark(var(--ui-yellow-50), color-mix(in srgb, var(--ui-yellow-400) 16%, transparent));
+  --ui-warning-subtle-fg: light-dark(var(--ui-yellow-800), var(--ui-yellow-200));
+  --ui-warning-border: light-dark(var(--ui-yellow-200), var(--ui-yellow-800));
+
+  --ui-danger: light-dark(var(--ui-red-600), var(--ui-red-500));
+  --ui-danger-hover: light-dark(var(--ui-red-700), var(--ui-red-400));
+  --ui-danger-active: light-dark(var(--ui-red-800), var(--ui-red-300));
+  --ui-danger-on: light-dark(var(--ui-white), var(--ui-gray-950));
+  --ui-danger-subtle: light-dark(var(--ui-red-50), color-mix(in srgb, var(--ui-red-500) 16%, transparent));
+  --ui-danger-subtle-fg: light-dark(var(--ui-red-700), var(--ui-red-300));
+  --ui-danger-border: light-dark(var(--ui-red-200), var(--ui-red-800));
+
+  --ui-info: light-dark(var(--ui-sky-700), var(--ui-sky-500));
+  --ui-info-hover: light-dark(var(--ui-sky-800), var(--ui-sky-400));
+  --ui-info-active: light-dark(var(--ui-sky-900), var(--ui-sky-300));
+  --ui-info-on: light-dark(var(--ui-white), var(--ui-gray-950));
+  --ui-info-subtle: light-dark(var(--ui-sky-50), color-mix(in srgb, var(--ui-sky-500) 16%, transparent));
+  --ui-info-subtle-fg: light-dark(var(--ui-sky-800), var(--ui-sky-300));
+  --ui-info-border: light-dark(var(--ui-sky-200), var(--ui-sky-800));
+
+  --ui-neutral: light-dark(var(--ui-gray-400), var(--ui-gray-500));
+  --ui-neutral-subtle: light-dark(var(--ui-gray-100), var(--ui-gray-800));
+  --ui-neutral-subtle-fg: light-dark(var(--ui-gray-700), var(--ui-gray-300));
+  --ui-neutral-border: light-dark(var(--ui-gray-300), var(--ui-gray-700));
+
+  --ui-shadow-color: light-dark(var(--ui-gray-900), var(--ui-black));
+  --ui-shadow-sm: 0 1px 2px 0 color-mix(in srgb, var(--ui-shadow-color) 6%, transparent);
+  --ui-shadow-md: 0 4px 6px -1px color-mix(in srgb, var(--ui-shadow-color) 8%, transparent), 0 2px 4px -2px color-mix(in srgb, var(--ui-shadow-color) 8%, transparent);
+  --ui-shadow-lg: 0 10px 15px -3px color-mix(in srgb, var(--ui-shadow-color) 10%, transparent), 0 4px 6px -4px color-mix(in srgb, var(--ui-shadow-color) 10%, transparent);
+  --ui-shadow-xl: 0 25px 50px -12px color-mix(in srgb, var(--ui-shadow-color) 25%, transparent);
+
+  --ui-focus-width: 3px;
+  --ui-focus-ring: color-mix(in srgb, var(--ui-primary) 40%, transparent);
+  --ui-focus-ring-danger: color-mix(in srgb, var(--ui-danger) 40%, transparent);
+  --ui-control-radius: var(--ui-radius-lg);
+  --ui-button-radius: var(--ui-radius-full);
+}

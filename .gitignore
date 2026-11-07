@@ -3,3 +3,4 @@ packages/ui/dist/
 test-results/
 playwright-report/
 *.tgz
+storybook-static/

@@ -211,6 +211,16 @@ variant and state, the markup to copy, its tokens, and for JS components the
 `data-` options, events and API. Light and dark toggle on every page.
 Published to GitHub Pages. The same pages are the Playwright fixtures.
 
+**Storybook** (added 2026-11-07) is a second, interactive view: `@storybook/html-vite`
+with stories written as HTML strings in `stories/`, controls for each
+component's variants and states, a Theme toolbar (system / light / dark via
+`data-theme`) and the a11y addon. It imports `packages/ui/src` so edits
+hot-reload. It is a root dev dependency only; `@ui-shared-libs/ui` stays
+dependency-free. The static `docs/` pages remain the reference and the
+fixtures for the e2e and visual tests. Pages publishes the Storybook build at
+`/storybook/`. In milestone 5 the Vue and React adapters get stories beside
+the HTML ones.
+
 ## Testing
 
 - **Stylelint**: class names must start with `ui-`; no raw colours or
@@ -222,6 +232,9 @@ Published to GitHub Pages. The same pages are the Playwright fixtures.
   - a screenshot per docs page in light and dark, compared to a committed
     baseline.
 - **axe** on every docs page: no serious or critical violations.
+- **Storybook**: every story renders in light and dark with no console errors
+  and no serious or critical axe violations (Chromium, against the static
+  build), and every docs component page has stories.
 - **Size budget**: build fails if `ui.min.css` exceeds 40 KB gzipped or
   `ui.min.js` exceeds 25 KB gzipped (core only; modules have their own
   budgets set in milestone 3 and 4).

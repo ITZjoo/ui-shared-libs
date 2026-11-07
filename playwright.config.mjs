@@ -19,5 +19,7 @@ export default defineConfig({
     { name: 'firefox', testDir: 'tests/e2e', use: { ...devices['Desktop Firefox'] } },
     { name: 'webkit', testDir: 'tests/e2e', use: { ...devices['Desktop Safari'] } },
     { name: 'visual', testDir: 'tests/visual', use: { ...devices['Desktop Chrome'] } },
+    // Needs `npm run build-storybook` first; `npm run test:storybook` does both.
+    { name: 'storybook', testDir: 'tests/storybook', use: { ...devices['Desktop Chrome'] } },
   ],
 });

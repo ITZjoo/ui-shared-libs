@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { css, settle } from './helpers.mjs';
+import { css, settle, setTheme } from './helpers.mjs';
 
 const GREEN_700 = 'rgb(21, 128, 61)';
 const RED_600 = 'rgb(220, 38, 38)';
@@ -71,5 +71,11 @@ test('hover keeps the danger border on an invalid checkbox', async ({ page }) =>
 
 test('unchecked checkbox border and off switch track meet 3:1 (gray-500)', async ({ page }) => {
   expect(await css(page.locator('#terms'), 'border-top-color')).toBe('rgb(107, 114, 128)');
+  expect(await css(page.getByRole('switch', { name: 'Email notifications' }), 'background-color')).toBe('rgb(107, 114, 128)');
+});
+
+test('dark: off switch track uses its own gray-500 token (3:1 against thumb and surface)', async ({ page }) => {
+  await setTheme(page, 'dark');
+  await settle(page);
   expect(await css(page.getByRole('switch', { name: 'Email notifications' }), 'background-color')).toBe('rgb(107, 114, 128)');
 });

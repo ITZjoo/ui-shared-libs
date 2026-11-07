@@ -65,6 +65,8 @@
   --ui-shadow-xl: 0 25px 50px -12px color-mix(in srgb, var(--ui-shadow-color) 25%, transparent);
 
   --ui-control-border: light-dark(var(--ui-gray-500), var(--ui-gray-400));
+  /* Off-switch track: 3:1+ against both the thumb and the surface in each scheme (see final-fix-report). */
+  --ui-switch-track: light-dark(var(--ui-gray-500), var(--ui-gray-500));
 
   --ui-focus-width: 2px;
   --ui-focus-ring: var(--ui-primary);

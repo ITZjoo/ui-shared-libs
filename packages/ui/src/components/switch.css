@@ -11,7 +11,7 @@
   margin: 0;
   border: 0;
   border-radius: var(--ui-radius-full);
-  background-color: var(--ui-control-border);
+  background-color: var(--ui-switch-track);
   cursor: pointer;
   transition: background-color var(--ui-duration) var(--ui-ease);
 

@@ -64,9 +64,13 @@
   --ui-shadow-lg: 0 10px 15px -3px color-mix(in srgb, var(--ui-shadow-color) 10%, transparent), 0 4px 6px -4px color-mix(in srgb, var(--ui-shadow-color) 10%, transparent);
   --ui-shadow-xl: 0 25px 50px -12px color-mix(in srgb, var(--ui-shadow-color) 25%, transparent);
 
-  --ui-focus-width: 3px;
-  --ui-focus-ring: color-mix(in srgb, var(--ui-primary) 40%, transparent);
-  --ui-focus-ring-danger: color-mix(in srgb, var(--ui-danger) 40%, transparent);
+  --ui-control-border: light-dark(var(--ui-gray-500), var(--ui-gray-400));
+
+  --ui-focus-width: 2px;
+  --ui-focus-ring: var(--ui-primary);
+  --ui-focus-ring-danger: var(--ui-danger);
+  --ui-focus-shadow: 0 0 0 2px var(--ui-surface), 0 0 0 calc(2px + var(--ui-focus-width)) var(--ui-focus-ring);
+  --ui-focus-shadow-danger: 0 0 0 2px var(--ui-surface), 0 0 0 calc(2px + var(--ui-focus-width)) var(--ui-focus-ring-danger);
   --ui-control-radius: var(--ui-radius-lg);
   --ui-button-radius: var(--ui-radius-full);
 }

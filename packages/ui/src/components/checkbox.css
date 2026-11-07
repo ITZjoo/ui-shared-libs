@@ -7,7 +7,7 @@
   inline-size: 1.25rem;
   block-size: 1.25rem;
   margin: var(--ui-space-0-5) 0 0;
-  border: 2px solid var(--ui-border-strong);
+  border: 2px solid var(--ui-control-border);
   background-color: var(--ui-surface);
   cursor: pointer;
   transition:
@@ -18,7 +18,7 @@
   &::before { content: ""; transform: scale(0); transition: transform var(--ui-duration) var(--ui-ease-spring); }
   &:checked::before { transform: scale(1); }
   &:hover:where(:not(:disabled, [aria-invalid="true"])) { border-color: var(--ui-primary); }
-  &:focus-visible { outline: none; box-shadow: 0 0 0 var(--ui-focus-width) var(--ui-focus-ring); }
+  &:focus-visible { outline: none; box-shadow: var(--ui-focus-shadow); }
   &[aria-invalid="true"] { border-color: var(--ui-danger); }
   &:disabled { cursor: not-allowed; }
 }

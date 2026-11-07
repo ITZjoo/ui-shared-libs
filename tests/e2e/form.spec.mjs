@@ -57,3 +57,12 @@ test('label is tied to its control', async ({ page }) => {
   await page.getByLabel('Full name').fill('Test');
   await expect(page.locator('#name')).toHaveValue('Test');
 });
+
+test('the input focus ring is opaque primary', async ({ page }) => {
+  const input = page.locator('#name');
+  await input.focus();
+  await settle(page);
+  const shadow = await css(input, 'box-shadow');
+  expect(shadow).toContain('rgb(21, 128, 61)');
+  expect(shadow).not.toContain('rgba');
+});

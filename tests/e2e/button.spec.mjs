@@ -68,3 +68,14 @@ test('every variant draws a focus ring on keyboard focus', async ({ page }) => {
     expect(shadow, id).toContain(width);
   }
 });
+
+test('the focus ring is opaque primary, with a surface gap inside it', async ({ page }) => {
+  await page.keyboard.press('Tab');
+  const btn = page.locator('#btn-primary');
+  await btn.evaluate((e) => e.focus());
+  await settle(page);
+  const shadow = await css(btn, 'box-shadow');
+  expect(shadow).toContain('rgb(21, 128, 61)');
+  expect(shadow).not.toContain('rgba');
+  expect(shadow).toContain('rgb(255, 255, 255)');
+});

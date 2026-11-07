@@ -11,7 +11,7 @@
   margin: 0;
   border: 0;
   border-radius: var(--ui-radius-full);
-  background-color: var(--ui-border-strong);
+  background-color: var(--ui-control-border);
   cursor: pointer;
   transition: background-color var(--ui-duration) var(--ui-ease);
 
@@ -30,7 +30,7 @@
 
   &:checked { background-color: var(--ui-primary); }
   &:checked::before { transform: translateX(calc(var(--_w) - var(--_h))); }
-  &:focus-visible { outline: none; box-shadow: 0 0 0 var(--ui-focus-width) var(--ui-focus-ring); }
+  &:focus-visible { outline: none; box-shadow: var(--ui-focus-shadow); }
   &:disabled { cursor: not-allowed; }
 }
 .ui-switch--sm { --_w: 2.25rem; --_h: 1.25rem; --_thumb: 1rem; }

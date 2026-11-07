@@ -15,9 +15,9 @@
 
   &::placeholder { color: var(--ui-fg-muted); opacity: 1; }
   &:hover:where(:not(:disabled, :focus, [aria-invalid="true"])) { border-color: var(--ui-fg-subtle); }
-  &:focus { outline: none; border-color: var(--ui-primary); box-shadow: 0 0 0 var(--ui-focus-width) var(--ui-focus-ring); }
+  &:focus { outline: none; border-color: var(--ui-primary); box-shadow: var(--ui-focus-shadow); }
   &[aria-invalid="true"] { border-color: var(--ui-danger); }
-  &[aria-invalid="true"]:focus { box-shadow: 0 0 0 var(--ui-focus-width) var(--ui-focus-ring-danger); }
+  &[aria-invalid="true"]:focus { box-shadow: var(--ui-focus-shadow-danger); }
   &:disabled { background-color: var(--ui-surface-sunken); color: var(--ui-fg-subtle); cursor: not-allowed; }
 }
 

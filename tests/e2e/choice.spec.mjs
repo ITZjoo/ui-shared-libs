@@ -68,3 +68,8 @@ test('hover keeps the danger border on an invalid checkbox', async ({ page }) =>
   expect(await box.evaluate((el) => el.matches(':hover'))).toBe(true);
   expect(await css(box, 'border-top-color')).toBe(RED_600);
 });
+
+test('unchecked checkbox border and off switch track meet 3:1 (gray-500)', async ({ page }) => {
+  expect(await css(page.locator('#terms'), 'border-top-color')).toBe('rgb(107, 114, 128)');
+  expect(await css(page.getByRole('switch', { name: 'Email notifications' }), 'background-color')).toBe('rgb(107, 114, 128)');
+});

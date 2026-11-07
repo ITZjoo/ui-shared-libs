@@ -9,7 +9,7 @@
   --_bg-active: var(--ui-surface-sunken);
   --_fg: var(--ui-fg);
   --_border: var(--ui-border-strong);
-  --_ring: var(--ui-focus-ring);
+  --_focus: var(--ui-focus-shadow);
   --_shadow: var(--ui-shadow-sm);
 
   position: relative;
@@ -41,7 +41,7 @@
 
   &:hover { background-color: var(--_bg-hover); }
   &:active { background-color: var(--_bg-active); transform: scale(0.97); }
-  &:focus-visible { outline: none; box-shadow: var(--_shadow), 0 0 0 var(--ui-focus-width) var(--_ring); }
+  &:focus-visible { outline: none; box-shadow: var(--_focus), var(--_shadow); }
   &:disabled,
   &[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
   &[aria-busy="true"] { pointer-events: none; }
@@ -97,7 +97,7 @@
   --_bg-active: var(--ui-danger-active);
   --_fg: var(--ui-danger-on);
   --_border: transparent;
-  --_ring: var(--ui-focus-ring-danger);
+  --_focus: var(--ui-focus-shadow-danger);
 }
 
 .ui-btn--sm { --_h: 2rem; --_px: var(--ui-space-3); --_fs: var(--ui-text-xs); --_lh: var(--ui-leading-xs); --_gap: var(--ui-space-1-5); }

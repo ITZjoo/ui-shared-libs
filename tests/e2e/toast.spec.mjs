@@ -124,3 +124,15 @@ test('toast show and hide events are not cancelable', async ({ page }) => {
   });
   expect(flags).toEqual({ show: false, hide: false });
 });
+
+test('a page-authored region is reused and made a polite live region', async ({ page }) => {
+  await page.goto('/tests/fixtures/toast-region.html');
+  await page.evaluate(() => UI.toast({ message: 'Hi', duration: 0 }));
+  const regions = page.locator('.ui-toast-region');
+  await expect(regions).toHaveCount(1);
+  await expect(regions).toHaveAttribute('id', 'authored');
+  await expect(regions).toHaveAttribute('aria-live', 'polite');
+  await expect(regions).toHaveAttribute('role', 'region');
+  expect(await regions.getAttribute('aria-label')).toBeTruthy();
+  await expect(page.locator('#authored .ui-toast', { hasText: 'Hi' })).toHaveCount(1);
+});

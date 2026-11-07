@@ -13,6 +13,11 @@ function region() {
     el.setAttribute('aria-live', 'polite');
     document.body.append(el);
   }
+  // A page-authored region (the only way to use the position modifiers) is reused as-is, so
+  // fill in whatever makes it a live region without overriding what the page set.
+  if (!el.hasAttribute('role')) el.setAttribute('role', 'region');
+  if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', 'Notifications');
+  if (!el.hasAttribute('aria-live')) el.setAttribute('aria-live', 'polite');
   return el;
 }
 

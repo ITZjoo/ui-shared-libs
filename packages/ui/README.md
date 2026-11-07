@@ -76,7 +76,7 @@ Alert, modal and toast also need `dist/components/close.css`, which draws their 
 | `UI.init(root)` / `UI.destroy(root)` | run behaviours on markup (automatic for markup added later) |
 | `UI.register(name, factory)` | add a behaviour for `data-ui="name"` |
 | `UI.get(el, name?)` | the instance of a behaviour on an element (the first one if `name` is omitted) |
-| `UI.emit(el, component, event, detail?)` | dispatch a `ui:<component>:<event>` event on an element |
+| `UI.emit(el, component, event, detail?, { cancelable }?)` | dispatch a `ui:<component>:<event>` event on an element (not cancelable unless asked) |
 | `UI.version` | the package version string |
 | `UI.supports` | `{ commands, closedBy }`: whether the browser has invoker commands and `closedby` natively |
 
@@ -95,7 +95,8 @@ without invoker commands, the script supplies the fallback (`ui.iife.min.js` or 
 
 ## Events
 
-Events are `ui:<component>:<event>`, e.g. `ui:toast:hide`.
+Events are `ui:<component>:<event>`, e.g. `ui:toast:hide`. They bubble. Only
+`ui:<name>:dismiss` is cancelable: call `preventDefault()` to keep the element.
 
 A behaviour that throws during init does not stop the others. The error is
 rethrown asynchronously, and a `ui:runtime:error` event with

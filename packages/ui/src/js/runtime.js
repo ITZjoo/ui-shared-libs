@@ -52,8 +52,8 @@ export function get(el, name) {
   return name ? map.get(name) : map.values().next().value;
 }
 
-export function emit(el, component, event, detail) {
-  return el.dispatchEvent(new CustomEvent(`ui:${component}:${event}`, { bubbles: true, cancelable: true, detail }));
+export function emit(el, component, event, detail, { cancelable = false } = {}) {
+  return el.dispatchEvent(new CustomEvent(`ui:${component}:${event}`, { bubbles: true, cancelable, detail }));
 }
 
 export function start(doc) {

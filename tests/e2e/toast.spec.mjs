@@ -113,3 +113,14 @@ test('toast() still works if the region was removed', async ({ page }) => {
   });
   await expect(page.locator('.ui-toast-region[aria-live="polite"] .ui-toast', { hasText: 'Again' })).toHaveCount(1);
 });
+
+test('toast show and hide events are not cancelable', async ({ page }) => {
+  const flags = await page.evaluate(async () => {
+    const seen = {};
+    for (const type of ['show', 'hide']) document.addEventListener(`ui:toast:${type}`, (e) => { seen[type] = e.cancelable; });
+    const t = UI.toast({ message: 'Events', duration: 0 });
+    t.hide();
+    return seen;
+  });
+  expect(flags).toEqual({ show: false, hide: false });
+});

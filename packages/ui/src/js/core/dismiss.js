@@ -8,6 +8,6 @@ export function installDismiss(doc) {
     const target = button?.closest('[data-ui-dismissible]');
     if (!target) return;
     const component = target.getAttribute('data-ui-dismissible') || 'element';
-    if (emit(target, component, 'dismiss')) target.remove();
+    if (emit(target, component, 'dismiss', undefined, { cancelable: true })) target.remove();
   });
 }

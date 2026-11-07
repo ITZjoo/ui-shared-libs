@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toast · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Toast</h1>
+    <p class="docs-lead">Brief messages in a corner. Call <code>UI.toast({ … })</code>, or render one from the server with <code>data-ui="toast"</code>. Needs ui.js.</p>
+    <section class="docs-example" aria-labelledby="ex-api">
+      <h2 id="ex-api">From JavaScript</h2>
+      <div class="docs-demo">
+        <button type="button" class="ui-btn ui-btn--primary" data-docs-toast='{"title":"Saved","message":"Member updated.","variant":"success"}'>Success</button>
+        <button type="button" class="ui-btn" data-docs-toast='{"message":"Sync in progress."}'>Info</button>
+        <button type="button" class="ui-btn ui-btn--danger" data-docs-toast='{"title":"Failed","message":"Try again.","variant":"danger"}'>Danger</button>
+      </div>
+    </section>
+    <section class="docs-example" aria-labelledby="ex-server">
+      <h2 id="ex-server">From the server</h2>
+      <div class="docs-demo">
+        <div class="ui-toast ui-toast--warning" role="status" data-ui="toast" data-duration="0" id="flash">
+          <div class="ui-toast__body">
+            <p class="ui-toast__title">Session ends soon</p>
+            <p class="ui-toast__text">Save your work.</p>
+          </div>
+          <button type="button" class="ui-close" data-ui-dismiss aria-label="Close"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

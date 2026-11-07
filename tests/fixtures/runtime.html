@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>runtime fixture</title>
+  <script>
+    window.log = [];
+    document.addEventListener('ui:probe:ready', (e) => log.push(`ready:${e.detail.id}`));
+  </script>
+  <script src="/packages/ui/dist/ui.iife.min.js"></script>
+  <script>
+    UI.register('probe', (el) => {
+      log.push(`init:${el.id}`);
+      UI.emit(el, 'probe', 'ready', { id: el.id });
+      return { destroy() { log.push(`destroy:${el.id}`); } };
+    });
+    UI.register('other', (el) => { log.push(`other:${el.id}`); });
+  </script>
+</head>
+<body>
+  <main>
+    <div id="a" data-ui="probe"></div>
+    <div id="b" data-ui="probe other"></div>
+    <div id="late" data-ui="late"></div>
+    <section id="target"></section>
+  </main>
+</body>
+</html>

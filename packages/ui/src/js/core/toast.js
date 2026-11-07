@@ -15,18 +15,36 @@ function region() {
   return el;
 }
 
-// A countdown that pauses while the pointer or focus is on the toast.
+// A countdown that runs only while neither the pointer nor focus is on the toast.
 function countdown(el, duration, done) {
   if (duration <= 0) return () => {};
   let remaining = duration;
   let startedAt = 0;
   let timer = 0;
-  let paused = true;
-  const resume = () => { if (!paused) return; paused = false; startedAt = Date.now(); timer = setTimeout(done, remaining); };
-  const pause = () => { if (paused) return; paused = true; clearTimeout(timer); remaining -= Date.now() - startedAt; };
-  const events = [['mouseenter', pause], ['mouseleave', resume], ['focusin', pause], ['focusout', resume]];
+  let running = false;
+  let hovered = false;
+  let focused = false;
+  const sync = () => {
+    const shouldRun = !hovered && !focused;
+    if (shouldRun === running) return;
+    running = shouldRun;
+    if (running) {
+      startedAt = Date.now();
+      timer = setTimeout(done, remaining);
+    } else {
+      clearTimeout(timer);
+      remaining -= Date.now() - startedAt;
+    }
+  };
+  const events = [
+    ['mouseenter', () => { hovered = true; sync(); }],
+    ['mouseleave', () => { hovered = false; sync(); }],
+    ['focusin', () => { focused = true; sync(); }],
+    // relatedTarget is where focus is going; still inside the toast means still focused.
+    ['focusout', (event) => { focused = !!event.relatedTarget && el.contains(event.relatedTarget); sync(); }],
+  ];
   for (const [type, fn] of events) el.addEventListener(type, fn);
-  resume();
+  sync();
   return () => {
     clearTimeout(timer);
     for (const [type, fn] of events) el.removeEventListener(type, fn);
@@ -37,14 +55,28 @@ function close(el) {
   if (el.dataset.state === 'closing') return;
   el.dataset.state = 'closing';
   emit(el, 'toast', 'hide');
-  const remove = () => el.remove();
-  el.addEventListener('animationend', (event) => { if (event.target === el && !event.pseudoElement) remove(); });
-  setTimeout(remove, 400);
+  let fallback = 0;
+  const onEnd = (event) => { if (event.target === el && !event.pseudoElement) remove(); };
+  const remove = () => {
+    clearTimeout(fallback);
+    el.removeEventListener('animationend', onEnd);
+    el.remove();
+  };
+  el.addEventListener('animationend', onEnd);
+  fallback = setTimeout(remove, 400);
+}
+
+// Non-finite values (e.g. "abc", "null") fall back to the default. An empty string is
+// treated as "not set" (default, not persistent), since Number('') would otherwise be 0.
+function parseDuration(raw) {
+  if (raw === undefined || raw === null || String(raw).trim() === '') return DEFAULT_DURATION;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : DEFAULT_DURATION;
 }
 
 export function toastBehaviour(el) {
   if (!el.closest('.ui-toast-region')) region().append(el);
-  const duration = Number(el.dataset.duration ?? DEFAULT_DURATION);
+  const duration = parseDuration(el.dataset.duration);
   el.style.setProperty('--ui-toast-duration', `${duration}ms`);
   if (duration <= 0) el.setAttribute('data-persistent', '');
   const hide = () => close(el);

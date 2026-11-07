@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { css, setTheme } from './helpers.mjs';
+import { css, setTheme, tokenColor } from './helpers.mjs';
 
 test('card padding: default, small, and a nested default card is not affected', async ({ page }) => {
   await page.goto('/docs/components/card.html');
@@ -16,10 +16,26 @@ test('badge variants use subtle tokens', async ({ page }) => {
   expect(await css(page.locator('#badge-neutral'), 'background-color')).toBe('rgb(243, 244, 246)');
 });
 
-test('alert accent bar follows the variant, in both themes', async ({ page }) => {
+test('alert status icon follows the variant, in both themes', async ({ page }) => {
   await page.goto('/docs/components/alert.html');
   const warning = page.locator('#alert-warning');
-  expect(await css(warning, 'background-color', '::before')).toBe('rgb(234, 179, 8)');
+  // The icon uses the subtle foreground: the solid warning yellow is under 3:1 on its own tint.
+  expect(await css(warning, 'background-color', '::before')).toBe('rgb(133, 77, 14)');
+  expect(await css(warning, 'mask-image', '::before')).toContain('M10.3 4.6');
+  expect(await css(page.locator('#alert-dismissible'), 'mask-image', '::before')).toContain('M12 7.5v5');
   await setTheme(page, 'dark');
-  expect(await css(warning, 'background-color', '::before')).toBe('rgb(250, 204, 21)');
+  expect(await css(warning, 'background-color', '::before')).toBe(await tokenColor(page, '--ui-warning-subtle-fg'));
+  expect(await css(warning, 'background-color', '::before')).not.toBe('rgb(133, 77, 14)');
+});
+
+test('an authored .ui-alert__icon replaces the built-in icon', async ({ page }) => {
+  await page.goto('/docs/components/alert.html');
+  const alert = page.locator('#alert-warning');
+  expect(await css(alert, 'content', '::before')).not.toBe('none');
+  await alert.evaluate((el) => {
+    const icon = document.createElement('span');
+    icon.className = 'ui-alert__icon';
+    el.prepend(icon);
+  });
+  expect(await css(alert, 'content', '::before')).toBe('none');
 });

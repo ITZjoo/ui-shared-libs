@@ -10,6 +10,23 @@ test('controls use surface, border and control radius', async ({ page }) => {
   expect(await css(input, 'border-top-left-radius')).toBe('8px');
 });
 
+test('inputs, selects and buttons share one height per size', async ({ page }) => {
+  const heights = await page.evaluate(() => {
+    const row = document.createElement('div');
+    for (const size of ['', 'sm', 'lg']) {
+      for (const [tag, cls] of [['input', 'ui-input'], ['select', 'ui-select'], ['button', 'ui-btn']]) {
+        const el = document.createElement(tag);
+        el.className = size ? `${cls} ${cls}--${size}` : cls;
+        if (tag === 'button') el.textContent = 'Go';
+        row.append(el);
+      }
+    }
+    document.body.append(row);
+    return [...row.children].map((el) => el.getBoundingClientRect().height);
+  });
+  expect(heights).toEqual([36, 36, 36, 32, 32, 32, 44, 44, 44]);
+});
+
 test('placeholder uses the muted foreground (gray-500, AA on white)', async ({ page }) => {
   expect(await css(page.locator('#name'), 'color', '::placeholder')).toBe('rgb(107, 114, 128)');
 });

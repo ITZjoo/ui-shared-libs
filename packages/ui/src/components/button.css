@@ -1,5 +1,5 @@
 .ui-btn {
-  --_h: 2.25rem;
+  --_h: var(--ui-control-h);
   --_px: var(--ui-space-4);
   --_fs: var(--ui-text-sm);
   --_lh: var(--ui-leading-sm);
@@ -40,7 +40,7 @@
     transform var(--ui-duration-fast) var(--ui-ease);
 
   &:hover { background-color: var(--_bg-hover); }
-  &:active { background-color: var(--_bg-active); transform: scale(0.97); }
+  &:active { background-color: var(--_bg-active); transform: translateY(1px); }
   &:focus-visible { outline: none; box-shadow: var(--_focus), var(--_shadow); }
   &:disabled,
   &[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
@@ -78,7 +78,7 @@
   --_bg-hover: color-mix(in srgb, var(--ui-primary-subtle), var(--ui-primary) 12%);
   --_bg-active: color-mix(in srgb, var(--ui-primary-subtle), var(--ui-primary) 20%);
   --_fg: var(--ui-primary-subtle-fg);
-  --_border: transparent;
+  --_border: var(--ui-primary-border);
   --_shadow: 0 0 0 0 transparent;
 }
 .ui-btn--ghost {
@@ -100,7 +100,7 @@
   --_focus: var(--ui-focus-shadow-danger);
 }
 
-.ui-btn--sm { --_h: 2rem; --_px: var(--ui-space-3); --_fs: var(--ui-text-xs); --_lh: var(--ui-leading-xs); --_gap: var(--ui-space-1-5); }
-.ui-btn--lg { --_h: 2.75rem; --_px: var(--ui-space-5); --_fs: var(--ui-text-base); --_lh: var(--ui-leading-base); }
+.ui-btn--sm { --_h: var(--ui-control-h-sm); --_px: var(--ui-space-3); --_fs: var(--ui-text-xs); --_lh: var(--ui-leading-xs); --_gap: var(--ui-space-1-5); }
+.ui-btn--lg { --_h: var(--ui-control-h-lg); --_px: var(--ui-space-5); --_fs: var(--ui-text-base); --_lh: var(--ui-leading-base); }
 .ui-btn--block { display: flex; inline-size: 100%; }
 .ui-btn--icon { inline-size: var(--_h); padding: 0; }

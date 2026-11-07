@@ -3,7 +3,7 @@
 .ui-select {
   display: block;
   inline-size: 100%;
-  padding: var(--ui-space-2-5) var(--ui-space-3);
+  padding: var(--ui-space-2) var(--ui-space-3);
   border: 1px solid var(--ui-border-strong);
   border-radius: var(--ui-control-radius);
   background-color: var(--ui-surface);
@@ -11,6 +11,7 @@
   font: inherit;
   font-size: var(--ui-text-sm);
   line-height: var(--ui-leading-sm);
+  box-shadow: var(--ui-shadow-sm);
   transition: border-color var(--ui-duration-fast) var(--ui-ease), box-shadow var(--ui-duration-fast) var(--ui-ease);
 
   &::placeholder { color: var(--ui-fg-muted); opacity: 1; }
@@ -18,16 +19,20 @@
   &:focus { outline: none; border-color: var(--ui-primary); box-shadow: var(--ui-focus-shadow); }
   &[aria-invalid="true"] { border-color: var(--ui-danger); }
   &[aria-invalid="true"]:focus { box-shadow: var(--ui-focus-shadow-danger); }
-  &:disabled { background-color: var(--ui-surface-sunken); color: var(--ui-fg-subtle); cursor: not-allowed; }
+  &:disabled { background-color: var(--ui-surface-sunken); color: var(--ui-fg-subtle); box-shadow: none; cursor: not-allowed; }
 }
+
+/* Single-line controls follow the button height scale. */
+.ui-input,
+.ui-select { block-size: var(--ui-control-h); padding-block: 0; }
 
 .ui-input:read-only:not(:disabled),
 .ui-textarea:read-only:not(:disabled) { background-color: var(--ui-surface-sunken); }
 
 .ui-input--sm,
-.ui-select--sm { padding-block: var(--ui-space-1-5); font-size: var(--ui-text-xs); line-height: var(--ui-leading-xs); }
+.ui-select--sm { block-size: var(--ui-control-h-sm); font-size: var(--ui-text-xs); line-height: var(--ui-leading-xs); }
 .ui-input--lg,
-.ui-select--lg { padding-block: var(--ui-space-3); font-size: var(--ui-text-base); line-height: var(--ui-leading-base); }
+.ui-select--lg { block-size: var(--ui-control-h-lg); font-size: var(--ui-text-base); line-height: var(--ui-leading-base); }
 
 .ui-textarea { min-block-size: 5rem; resize: vertical; }
 

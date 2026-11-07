@@ -74,5 +74,10 @@
   --ui-focus-shadow: 0 0 0 2px var(--ui-surface), 0 0 0 calc(2px + var(--ui-focus-width)) var(--ui-focus-ring);
   --ui-focus-shadow-danger: 0 0 0 2px var(--ui-surface), 0 0 0 calc(2px + var(--ui-focus-width)) var(--ui-focus-ring-danger);
   --ui-control-radius: var(--ui-radius-lg);
-  --ui-button-radius: var(--ui-radius-full);
+  /* Buttons share the control radius so a button beside an input lines up. Set var(--ui-radius-full) for pills. */
+  --ui-button-radius: var(--ui-control-radius);
+  /* One height scale for buttons, inputs and selects. */
+  --ui-control-h-sm: 2rem;
+  --ui-control-h: 2.25rem;
+  --ui-control-h-lg: 2.75rem;
 }

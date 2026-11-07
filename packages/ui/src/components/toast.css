@@ -15,28 +15,30 @@
 
 .ui-toast {
   --_accent: var(--ui-info);
+  --_glyph: var(--ui-glyph-info);
 
   position: relative;
   display: flex;
   align-items: flex-start;
   gap: var(--ui-space-3);
-  padding: var(--ui-space-4) var(--ui-space-4) var(--ui-space-4) var(--ui-space-5);
+  padding: var(--ui-space-3) var(--ui-space-3) var(--ui-space-3) var(--ui-space-4);
   overflow: hidden;
   border: 1px solid var(--ui-border);
-  border-radius: var(--ui-radius-xl);
+  border-radius: var(--ui-radius-lg);
   background-color: var(--ui-surface-raised);
   color: var(--ui-fg);
   box-shadow: var(--ui-shadow-lg);
   pointer-events: auto;
   animation: ui-toast-in var(--ui-duration-slow) var(--ui-ease);
 
+  /* Status icon; the bar along the bottom shows the time left. */
   &::before {
     content: "";
-    position: absolute;
-    inset-block: 0;
-    inset-inline-start: 0;
-    inline-size: 4px;
+    flex-shrink: 0;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
     background-color: var(--_accent);
+    mask: var(--_glyph) center / contain no-repeat;
   }
   &::after {
     content: "";
@@ -53,9 +55,9 @@
   &[data-persistent]::after { display: none; }
   &[data-state="closing"] { animation: ui-toast-out var(--ui-duration) var(--ui-ease) forwards; }
 }
-.ui-toast--success { --_accent: var(--ui-success); }
-.ui-toast--warning { --_accent: var(--ui-warning); }
-.ui-toast--danger { --_accent: var(--ui-danger); }
+.ui-toast--success { --_accent: var(--ui-success); --_glyph: var(--ui-glyph-success); }
+.ui-toast--warning { --_accent: var(--ui-warning-subtle-fg); --_glyph: var(--ui-glyph-warning); }
+.ui-toast--danger { --_accent: var(--ui-danger); --_glyph: var(--ui-glyph-danger); }
 
 .ui-toast__body { flex: 1; min-inline-size: 0; }
 .ui-toast__title { margin: 0; font-size: var(--ui-text-sm); line-height: var(--ui-leading-sm); font-weight: var(--ui-weight-semibold); }

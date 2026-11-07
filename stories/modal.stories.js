@@ -14,7 +14,7 @@ export default {
     <p>The savings history stays in the reports.</p>
   </div>
   <footer class="ui-modal__footer">
-    <button type="button" class="ui-btn" commandfor="sb-modal" command="close">Cancel</button>
+    <button type="button" class="ui-btn" commandfor="sb-modal" command="close" autofocus>Cancel</button>
     <button type="button" class="ui-btn ${danger ? 'ui-btn--danger' : 'ui-btn--primary'}" commandfor="sb-modal" command="close" value="confirm">${confirm}</button>
   </footer>
 </dialog>`,

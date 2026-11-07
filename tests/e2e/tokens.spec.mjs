@@ -40,6 +40,7 @@ test.describe('dark device', () => {
 
 test('unlayered app CSS overrides a token without !important', async ({ page }) => {
   await page.goto('/docs/index.html');
+  expect(await tokenColor(page, '--ui-primary')).toBe(GREEN_700);
   await page.addStyleTag({ content: ':root { --ui-primary: #2563eb; }' });
   expect(await tokenColor(page, '--ui-primary')).toBe('rgb(37, 99, 235)');
 });

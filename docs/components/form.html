@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Form controls</h1>
+    <p class="docs-lead">Input, textarea, select and the field that labels them. Mark an invalid control with <code>aria-invalid="true"</code>.</p>
+
+    <section class="docs-example" aria-labelledby="ex-field">
+      <h2 id="ex-field">Field</h2>
+      <div class="docs-demo docs-demo--stack">
+        <div class="ui-field">
+          <label class="ui-label" for="name">Full name<span class="ui-label__required" aria-hidden="true">*</span></label>
+          <input class="ui-input" id="name" name="name" required placeholder="As on your ID" aria-describedby="name-hint">
+          <p class="ui-hint" id="name-hint">Used on receipts.</p>
+        </div>
+        <div class="ui-field" id="email-field">
+          <div class="ui-field__header">
+            <label class="ui-label" for="email">Email</label>
+            <span class="ui-label__optional">Optional</span>
+          </div>
+          <input class="ui-input" id="email" type="email" value="not-an-email" aria-invalid="true" aria-describedby="email-error">
+          <p class="ui-hint">We never share it.</p>
+          <p class="ui-error" id="email-error">Enter a valid email address.</p>
+        </div>
+        <div class="ui-field">
+          <label class="ui-label" for="disabled">Member number</label>
+          <input class="ui-input" id="disabled" value="KOP-0001" disabled>
+        </div>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-textarea">
+      <h2 id="ex-textarea">Textarea</h2>
+      <div class="docs-demo docs-demo--stack">
+        <div class="ui-field">
+          <label class="ui-label" for="notes">Notes</label>
+          <textarea class="ui-textarea" id="notes" rows="3"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-select">
+      <h2 id="ex-select">Select</h2>
+      <div class="docs-demo docs-demo--stack">
+        <div class="ui-field">
+          <label class="ui-label" for="city">City</label>
+          <select class="ui-select" id="city">
+            <option value="">Choose…</option>
+            <option>Bandung</option>
+            <option>Jakarta</option>
+          </select>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

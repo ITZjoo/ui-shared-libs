@@ -6,9 +6,14 @@
   <script>
     window.log = [];
     document.addEventListener('ui:probe:ready', (e) => log.push(`ready:${e.detail.id}`));
+    document.addEventListener('ui:runtime:error', (e) => log.push(`error:${e.detail.name}`));
+    // The runtime rethrows factory errors asynchronously; record them instead of failing the page.
+    window.addEventListener('error', (e) => { log.push('uncaught'); e.preventDefault(); });
+    window.onerror = () => { log.push('uncaught'); return true; };
   </script>
   <script src="/packages/ui/dist/ui.iife.min.js"></script>
   <script>
+    UI.register('boom', () => { throw new Error('boom'); });
     UI.register('probe', (el) => {
       log.push(`init:${el.id}`);
       UI.emit(el, 'probe', 'ready', { id: el.id });
@@ -19,6 +24,7 @@
 </head>
 <body>
   <main>
+    <div id="x" data-ui="boom probe"></div>
     <div id="a" data-ui="probe"></div>
     <div id="b" data-ui="probe other"></div>
     <div id="late" data-ui="late"></div>

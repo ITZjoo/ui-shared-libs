@@ -45,6 +45,22 @@ test.describe('runtime', () => {
     await page.evaluate(() => UI.register('late', (el) => { window.log.push(`late:${el.id}`); }));
     expect(await count(page, 'late:late')).toBe(1);
   });
+
+  test('a throwing behaviour does not stop the others', async ({ page }) => {
+    const entries = await log(page);
+    expect(entries).toEqual(expect.arrayContaining(['init:x', 'init:a', 'init:b']));
+    expect(await count(page, 'error:boom')).toBe(1);
+  });
+
+  test('the observer still runs after a throwing first pass', async ({ page }) => {
+    await page.evaluate(() => {
+      const n = document.createElement('div');
+      n.id = 'n';
+      n.dataset.ui = 'probe';
+      document.querySelector('#target').append(n);
+    });
+    await expect.poll(() => count(page, 'init:n')).toBe(1);
+  });
 });
 
 test.describe('dismiss', () => {
@@ -64,5 +80,16 @@ test.describe('dismiss', () => {
     await page.evaluate(() => document.addEventListener('ui:alert:dismiss', (e) => e.preventDefault()));
     await page.locator('#alert-dismissible [data-ui-dismiss]').click();
     await expect(page.locator('#alert-dismissible')).toHaveCount(1);
+  });
+
+  test('works when the click lands on a text node', async ({ page }) => {
+    await page.goto('/docs/components/alert.html');
+    await page.evaluate(() => {
+      const button = document.querySelector('#alert-dismissible [data-ui-dismiss]');
+      const text = document.createTextNode('x');
+      button.append(text);
+      text.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    await expect(page.locator('#alert-dismissible')).toHaveCount(0);
   });
 });

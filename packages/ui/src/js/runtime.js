@@ -22,8 +22,17 @@ export function init(root = document) {
     for (const name of namesOf(el)) {
       const factory = registry.get(name);
       if (!factory || instances.get(el)?.has(name)) continue;
+      let instance;
+      try {
+        instance = factory(el) ?? {};
+      } catch (error) {
+        // Isolate the failure: report it, keep going. No instance is recorded, so a later init may retry.
+        emit(el, 'runtime', 'error', { name, error });
+        queueMicrotask(() => { throw error; });
+        continue;
+      }
       if (!instances.has(el)) instances.set(el, new Map());
-      instances.get(el).set(name, factory(el) ?? {});
+      instances.get(el).set(name, instance);
     }
   }
 }
@@ -51,7 +60,7 @@ export function start(doc) {
   if (started) return;
   started = true;
   const run = () => {
-    init(doc);
+    // Install the observer first so a failing first pass can never leave later markup uninitialised.
     new MutationObserver((records) => {
       for (const record of records) {
         // A moved node is removed and re-added; it is still connected, so skip it.
@@ -59,6 +68,7 @@ export function start(doc) {
         for (const node of record.addedNodes) if (node.nodeType === 1 && node.isConnected) init(node);
       }
     }).observe(doc.documentElement, { childList: true, subtree: true });
+    init(doc);
   };
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', run, { once: true });
   else run();

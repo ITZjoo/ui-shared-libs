@@ -79,3 +79,17 @@ test.describe('fallback for browsers without invoker commands', () => {
     await expect(dialog).toBeHidden();
   });
 });
+
+test('--full is (nearly) the full viewport width', async ({ page }) => {
+  await page.goto('/docs/components/modal.html');
+  const width = await page.evaluate(() => {
+    const dialog = document.createElement('dialog');
+    dialog.className = 'ui-modal ui-modal--full';
+    dialog.textContent = 'Full';
+    document.body.append(dialog);
+    dialog.showModal();
+    return dialog.offsetWidth;
+  });
+  const viewport = page.viewportSize().width;
+  expect(width).toBeGreaterThanOrEqual(viewport - 40);
+});

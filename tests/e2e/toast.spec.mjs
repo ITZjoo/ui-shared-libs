@@ -26,34 +26,34 @@ test('duration 0 stays until closed, and emits hide', async ({ page }) => {
 });
 
 test('hovering pauses the timer', async ({ page }) => {
-  await page.evaluate(() => UI.toast({ message: 'Hover me', duration: 700 }));
+  await page.evaluate(() => UI.toast({ message: 'Hover me', duration: 1500 }));
   const toast = page.locator('.ui-toast', { hasText: 'Hover me' });
   await toast.hover();
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(2500);
   await expect(toast).toBeVisible();
   await page.mouse.move(0, 0);
   await expect(toast).toHaveCount(0, { timeout: 3000 });
 });
 
 test('focus inside keeps it open after the pointer leaves', async ({ page }) => {
-  await page.evaluate(() => UI.toast({ message: 'Focus me', duration: 700 }));
+  await page.evaluate(() => UI.toast({ message: 'Focus me', duration: 1500 }));
   const toast = page.locator('.ui-toast', { hasText: 'Focus me' });
   await toast.hover();
   await toast.getByRole('button', { name: 'Close' }).focus();
   await page.mouse.move(0, 0);
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(2500);
   await expect(toast).toBeVisible();
   await page.evaluate(() => document.activeElement.blur());
   await expect(toast).toHaveCount(0, { timeout: 3000 });
 });
 
 test('hover keeps it open after focus leaves', async ({ page }) => {
-  await page.evaluate(() => UI.toast({ message: 'Hover and focus', duration: 700 }));
+  await page.evaluate(() => UI.toast({ message: 'Hover and focus', duration: 1500 }));
   const toast = page.locator('.ui-toast', { hasText: 'Hover and focus' });
   await toast.getByRole('button', { name: 'Close' }).focus();
   await toast.hover();
   await page.evaluate(() => document.activeElement.blur());
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(2500);
   await expect(toast).toBeVisible();
   await page.mouse.move(0, 0);
   await expect(toast).toHaveCount(0, { timeout: 3000 });

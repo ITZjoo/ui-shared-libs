@@ -45,7 +45,7 @@
 .ui-modal--sm { --_w: 24rem; }
 .ui-modal--lg { --_w: 42rem; }
 .ui-modal--xl { --_w: 56rem; }
-.ui-modal--full { --_w: 100vw; }
+.ui-modal--full { inline-size: calc(100vw - 2rem); }
 
 .ui-modal__header {
   display: flex;

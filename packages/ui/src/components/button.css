@@ -56,6 +56,10 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .ui-btn:active { transform: none; }
+}
+
 .ui-btn--outline {
   --_bg: var(--ui-surface);
   --_bg-hover: var(--ui-surface-sunken);

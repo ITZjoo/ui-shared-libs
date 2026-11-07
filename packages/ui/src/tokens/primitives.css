@@ -126,3 +126,12 @@
   --ui-z-modal: 1000;
   --ui-z-toast: 1100;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  ::backdrop {
+    --ui-duration-fast: 0.01ms;
+    --ui-duration: 0.01ms;
+    --ui-duration-slow: 0.01ms;
+  }
+}

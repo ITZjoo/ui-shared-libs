@@ -15,6 +15,7 @@
     "./ui.min.css": "./dist/ui.min.css",
     "./tokens.css": "./dist/tokens.css",
     "./base.css": "./dist/base.css",
+    "./utilities.css": "./dist/utilities.css",
     "./components/*": "./dist/components/*",
     "./ui.min.js": "./dist/ui.min.js",
     "./ui.iife.min.js": "./dist/ui.iife.min.js",

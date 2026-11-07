@@ -1,4 +1,4 @@
-// Builds packages/ui/src into dist/: the full CSS bundle, tokens and base on
+// Builds packages/ui/src into dist/: the full CSS bundle, tokens, base and utilities on
 // their own, one file per component (all readable and minified), and the JS
 // runtime as ESM and as an IIFE that defines window.UI.
 import { bundleAsync } from 'lightningcss';
@@ -59,6 +59,7 @@ export async function build({ outDir = join(pkgDir, 'dist') } = {}) {
   await emitCss('ui', join(srcDir, 'ui.css'));
   await emitCss('tokens', join(srcDir, '__tokens__.css'), entry(TOKEN_FILES.map((f) => [f, 'ui.tokens'])));
   await emitCss('base', join(srcDir, '__base__.css'), entry(BASE_FILES));
+  await emitCss('utilities', join(srcDir, '__utilities__.css'), entry([['utilities/layout.css', 'ui.utilities']]));
   for (const name of await readdir(join(srcDir, 'components'))) {
     if (!name.endsWith('.css') || name === 'index.css') continue;
     const base = name.slice(0, -'.css'.length);

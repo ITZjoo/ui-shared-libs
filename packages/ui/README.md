@@ -43,7 +43,11 @@ import { toast } from '@ui-shared-libs/ui';
 Every colour comes from a token. Override tokens after the kit:
 
 ```css
-:root { --ui-primary: #2563eb; --ui-primary-hover: #1d4ed8; --ui-primary-active: #1e40af; }
+:root {
+  --ui-primary: light-dark(#2563eb, #60a5fa);
+  --ui-primary-hover: light-dark(#1d4ed8, #93c5fd);
+  --ui-primary-active: light-dark(#1e40af, #bfdbfe);
+}
 ```
 
 Dark mode follows the device. Force one with `<html data-theme="dark">` or
@@ -53,7 +57,14 @@ The kit sits in `@layer ui`, so your own CSS wins without `!important`.
 
 ## Only what you use
 
-`dist/tokens.css` and `dist/base.css`, then any of `dist/components/*.css`.
+Load these, in this order:
+
+- `dist/tokens.css`
+- `dist/base.css`
+- `dist/utilities.css` (stack, cluster, grid, gap and `sr-only`), if you use them
+- any of `dist/components/*.css`
+
+Alert, modal and toast also need `dist/components/close.css`, which draws their close button.
 
 ## JavaScript
 
@@ -66,6 +77,7 @@ The kit sits in `@layer ui`, so your own CSS wins without `!important`.
 | `UI.register(name, factory)` | add a behaviour for `data-ui="name"` |
 | `UI.get(el, name?)` | the instance of a behaviour on an element (the first one if `name` is omitted) |
 | `UI.emit(el, component, event, detail?)` | dispatch a `ui:<component>:<event>` event on an element |
+| `UI.version` | the package version string |
 | `UI.supports` | `{ commands, closedBy }`: whether the browser has invoker commands and `closedby` natively |
 
 Toast options:
@@ -75,8 +87,11 @@ Toast options:
 - `duration`: milliseconds, default 5000. `0` or a negative value keeps the toast until it is closed. An invalid value falls back to 5000.
 - `dismissible`: show a close button, default `true`.
 
+The returned `hide()` dismisses the toast. `destroy()` only stops its timer and
+removes its listeners; the toast stays on screen.
+
 A modal opens with `<button commandfor="id" command="show-modal">`. In browsers
-without invoker commands, ui.js supplies the fallback.
+without invoker commands, the script supplies the fallback (`ui.iife.min.js` or the npm entry).
 
 ## Events
 

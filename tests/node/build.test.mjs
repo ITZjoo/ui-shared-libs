@@ -11,7 +11,7 @@ before(async () => {
 });
 
 test('build writes every bundle', async () => {
-  for (const file of ['ui.css', 'ui.min.css', 'tokens.css', 'tokens.min.css', 'base.css', 'base.min.css', 'ui.js', 'ui.min.js', 'ui.iife.min.js']) {
+  for (const file of ['ui.css', 'ui.min.css', 'tokens.css', 'tokens.min.css', 'base.css', 'base.min.css', 'utilities.css', 'utilities.min.css', 'ui.js', 'ui.min.js', 'ui.iife.min.js']) {
     assert.ok(out.files.includes(file), `missing ${file}`);
   }
   assert.ok((await readdir(out.outDir)).includes('components'));

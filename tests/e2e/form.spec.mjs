@@ -28,6 +28,21 @@ test('aria-invalid shows the danger border and hides the hint', async ({ page })
   await expect(page.locator('#email-field .ui-hint')).toBeHidden();
 });
 
+test('hover keeps the danger border on an invalid control', async ({ page }) => {
+  const input = page.locator('#email');
+  await input.hover();
+  await settle(page);
+  expect(await css(input, 'border-top-color')).toBe('rgb(220, 38, 38)');
+});
+
+test('hover keeps the primary border on a focused control', async ({ page }) => {
+  const input = page.locator('#name');
+  await input.focus();
+  await input.hover();
+  await settle(page);
+  expect(await css(input, 'border-top-color')).toBe('rgb(21, 128, 61)');
+});
+
 test('disabled uses the sunken surface', async ({ page }) => {
   expect(await css(page.locator('#disabled'), 'background-color')).toBe('rgb(243, 244, 246)');
 });

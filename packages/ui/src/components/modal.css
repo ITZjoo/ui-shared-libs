@@ -1,0 +1,69 @@
+.ui-modal {
+  --_w: 32rem;
+
+  inline-size: min(var(--_w), calc(100vw - 2rem));
+  max-inline-size: none;
+  max-block-size: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--ui-radius-2xl);
+  background-color: var(--ui-surface-raised);
+  color: var(--ui-fg);
+  box-shadow: var(--ui-shadow-xl);
+  transition:
+    opacity var(--ui-duration) var(--ui-ease),
+    transform var(--ui-duration) var(--ui-ease),
+    display var(--ui-duration) allow-discrete,
+    overlay var(--ui-duration) allow-discrete;
+
+  &[open] { display: flex; flex-direction: column; }
+  &:not([open]) { opacity: 0; transform: translateY(12px) scale(0.98); }
+
+  &::backdrop {
+    background-color: var(--ui-overlay);
+    backdrop-filter: blur(2px);
+    transition:
+      background-color var(--ui-duration) var(--ui-ease),
+      display var(--ui-duration) allow-discrete,
+      overlay var(--ui-duration) allow-discrete;
+  }
+  &:not([open])::backdrop { background-color: transparent; }
+}
+
+@starting-style {
+  .ui-modal[open] { opacity: 0; transform: translateY(12px) scale(0.98); }
+  .ui-modal[open]::backdrop { background-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-modal,
+  .ui-modal:not([open]) { transform: none; }
+}
+
+.ui-modal--sm { --_w: 24rem; }
+.ui-modal--lg { --_w: 42rem; }
+.ui-modal--xl { --_w: 56rem; }
+.ui-modal--full { --_w: 100vw; }
+
+.ui-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-5) var(--ui-space-6);
+  border-block-end: 1px solid var(--ui-border);
+}
+.ui-modal__title { margin: 0; font-size: var(--ui-text-base); line-height: var(--ui-leading-base); font-weight: var(--ui-weight-semibold); }
+.ui-modal__desc { margin: var(--ui-space-0-5) 0 0; font-size: var(--ui-text-sm); line-height: var(--ui-leading-sm); color: var(--ui-fg-muted); }
+.ui-modal__body { flex: 1; overflow-y: auto; padding: var(--ui-space-6); }
+.ui-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ui-space-2);
+  padding: var(--ui-space-4) var(--ui-space-6);
+  border-block-start: 1px solid var(--ui-border);
+}
+
+:root:has(.ui-modal:modal) { overflow: hidden; }

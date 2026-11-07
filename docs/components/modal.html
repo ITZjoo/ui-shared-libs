@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modal · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Modal</h1>
+    <p class="docs-lead">A native <code>&lt;dialog&gt;</code>. Esc, a click outside or a close button closes it. Works without ui.js in browsers with invoker commands; ui.js fills in the rest.</p>
+    <section class="docs-example" aria-labelledby="ex-modal">
+      <h2 id="ex-modal">Modal</h2>
+      <div class="docs-demo">
+        <button type="button" class="ui-btn ui-btn--primary" commandfor="demo-modal" command="show-modal">Open modal</button>
+        <dialog class="ui-modal" id="demo-modal" closedby="any" aria-labelledby="demo-modal-title">
+          <header class="ui-modal__header">
+            <div>
+              <h2 class="ui-modal__title" id="demo-modal-title">Delete member?</h2>
+              <p class="ui-modal__desc">This cannot be undone.</p>
+            </div>
+            <button type="button" class="ui-close" commandfor="demo-modal" command="close" aria-label="Close"></button>
+          </header>
+          <div class="ui-modal__body">
+            <p>The member's savings history stays in the reports.</p>
+          </div>
+          <footer class="ui-modal__footer">
+            <button type="button" class="ui-btn" commandfor="demo-modal" command="close">Cancel</button>
+            <button type="button" class="ui-btn ui-btn--danger" commandfor="demo-modal" command="close" value="delete">Delete</button>
+          </footer>
+        </dialog>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -75,7 +75,7 @@
   --_bg-active: color-mix(in srgb, var(--ui-primary-subtle), var(--ui-primary) 20%);
   --_fg: var(--ui-primary-subtle-fg);
   --_border: transparent;
-  --_shadow: none;
+  --_shadow: 0 0 0 0 transparent;
 }
 .ui-btn--ghost {
   --_bg: transparent;
@@ -83,7 +83,7 @@
   --_bg-active: var(--ui-border);
   --_fg: var(--ui-fg-muted);
   --_border: transparent;
-  --_shadow: none;
+  --_shadow: 0 0 0 0 transparent;
 
   &:hover { color: var(--ui-fg); }
 }

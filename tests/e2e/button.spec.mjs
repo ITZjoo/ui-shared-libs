@@ -53,3 +53,18 @@ test('each demo shows its markup', async ({ page }) => {
   await expect(page.locator('pre.docs-code')).toHaveCount(demos);
   await expect(page.locator('pre.docs-code').first()).toContainText('class="ui-btn ui-btn--primary"');
 });
+
+test('every variant draws a focus ring on keyboard focus', async ({ page }) => {
+  for (const id of ['btn-primary', 'btn-secondary', 'btn-outline', 'btn-ghost', 'btn-danger']) {
+    const el = page.locator(`#${id}`);
+    await page.evaluate(() => document.activeElement?.blur());
+    await page.keyboard.press('Tab');
+    await el.evaluate((e) => e.focus());
+    await settle(page);
+    expect(await el.evaluate((e) => e.matches(':focus-visible')), `${id} focus-visible`).toBe(true);
+    const shadow = await css(el, 'box-shadow');
+    expect(shadow, id).not.toBe('none');
+    const width = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--ui-focus-width').trim());
+    expect(shadow, id).toContain(width);
+  }
+});

@@ -21,12 +21,12 @@ MIT licensed, published publicly to npm:
 
 | Package | Contents |
 |---|---|
-| `@itzjoo/ui` | CSS, optional JS, themes, modules. The product. |
-| `@itzjoo/ui-vue` | Vue 3 components that render `@itzjoo/ui` markup. |
-| `@itzjoo/ui-react` | React components that render `@itzjoo/ui` markup. |
+| `@ui-shared-libs/ui` | CSS, optional JS, themes, modules. The product. |
+| `@ui-shared-libs/vue` | Vue 3 components that render `@ui-shared-libs/ui` markup. |
+| `@ui-shared-libs/react` | React components that render `@ui-shared-libs/ui` markup. |
 
-The npm scope must match the owner's npm account; if it differs, the scope is
-renamed before the first publish and nothing else changes.
+The scope is the npm organisation `ui-shared-libs`, owned by the author and
+created before the first publish.
 
 ```
 packages/
@@ -52,7 +52,7 @@ docs/                static HTML docs site, one page per component
 tests/               Playwright
 ```
 
-## Build output (`@itzjoo/ui`)
+## Build output (`@ui-shared-libs/ui`)
 
 ```
 dist/ui.css            dist/ui.min.css            core
@@ -180,14 +180,14 @@ an inline CSS mask so no icon set is required.
 
 ## Framework adapters
 
-`@itzjoo/ui-vue` and `@itzjoo/ui-react` expose one component per kit
+`@ui-shared-libs/vue` and `@ui-shared-libs/react` expose one component per kit
 component (`<UiButton variant="primary" size="lg">`). They:
 
 - render exactly the documented markup and classes, so the CSS is the single
   source of styling;
 - call `UI.init(el)` on mount and `UI.destroy(el)` on unmount for JS
   components, and map `ui:*` events to framework events / callbacks;
-- ship TypeScript types; peer-depend on `@itzjoo/ui`.
+- ship TypeScript types; peer-depend on `@ui-shared-libs/ui`.
 
 ## Browsers
 

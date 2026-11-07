@@ -81,25 +81,34 @@ dist/components/<name>.css                         one component, for cherry-pic
   `aria-invalid="true"`, `aria-expanded`, `aria-current`, `aria-selected`,
   `[open]`, `:checked`.
 - Utilities are layout only: `ui-stack`, `ui-cluster`, `ui-grid`,
-  `ui-gap-{1..12}`, `ui-container`, `ui-sr-only`.
+  `ui-gap-{1,2,3,4,5,6,8,10,12}`, `ui-container`, `ui-sr-only`.
 
 ## Tokens
 
 All tokens are custom properties prefixed `--ui-`.
 
 **Primitives** (`tokens/primitives.css`): the colour scales from the
-reference (`green` as primary, `yellow` as accent, plus `neutral`, `red`,
-`amber`, `blue`, each 50–950); spacing on a 4px scale (`--ui-space-1` = 4px …
-`--ui-space-16` = 64px); radii; font families, sizes, weights and line
-heights; shadows; durations and easings.
+reference, named by hue: `green` (primary, success), `yellow` (accent,
+warning), `red` (danger), `orange`, `sky` (info), `gray` (neutral), each
+50–950, plus `white` and `black`; spacing on a 4px scale with half steps
+(`--ui-space-0-5` = 2px … `--ui-space-16` = 64px); radii; font families,
+sizes, weights and line heights; durations and easings; z-indexes.
 
 **Semantic** (`tokens/semantic.css`): what components read. Surfaces
-(`--ui-bg`, `--ui-surface`, `--ui-surface-raised`, `--ui-surface-sunken`),
-text (`--ui-fg`, `--ui-fg-muted`, `--ui-fg-subtle`, `--ui-fg-on-primary`),
-borders (`--ui-border`, `--ui-border-strong`), intents (`--ui-primary`,
-`--ui-primary-hover`, `--ui-primary-active`, `--ui-primary-subtle`, and the
-same for `success`, `warning`, `danger`, `info`), focus ring, control height
-and radius.
+(`--ui-bg`, `--ui-surface`, `--ui-surface-raised`, `--ui-surface-sunken`,
+`--ui-overlay`), text (`--ui-fg`, `--ui-fg-muted`, `--ui-fg-subtle`),
+borders (`--ui-border`, `--ui-border-strong`), shadows (`--ui-shadow-sm|md|lg|xl`),
+and for each intent `primary`, `success`, `warning`, `danger`, `info`:
+`--ui-<intent>`, `-hover`, `-active`, `-on` (text on the solid colour),
+`-subtle`, `-subtle-fg`, `-border`; `neutral` has `--ui-neutral`,
+`-subtle`, `-subtle-fg`, `-border`. Plus focus ring, control radius and
+button radius. Glyphs (check, dash, close) are `--ui-glyph-*` tokens holding
+SVG data URIs used as CSS masks.
+
+Contrast: every text/background pair the kit sets meets WCAG AA. For this
+the solid primary is `green-700` (white text 5.0:1) rather than the
+reference's `green-600` (3.3:1); `green-600`'s look survives in hovers and
+tints. Info solid is `sky-700` for the same reason.
 
 Rule: a component reads semantic tokens only. Stylelint enforces no raw
 colour values inside `components/` and `modules/`.

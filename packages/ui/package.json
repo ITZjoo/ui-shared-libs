@@ -1,0 +1,32 @@
+{
+  "name": "@ui-shared-libs/ui",
+  "version": "0.1.0",
+  "description": "A framework-free UI kit: one CSS file and optional JavaScript, for any stack.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/ui.js",
+  "module": "./dist/ui.js",
+  "style": "./dist/ui.css",
+  "unpkg": "./dist/ui.iife.min.js",
+  "jsdelivr": "./dist/ui.iife.min.js",
+  "exports": {
+    ".": "./dist/ui.js",
+    "./ui.css": "./dist/ui.css",
+    "./ui.min.css": "./dist/ui.min.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./base.css": "./dist/base.css",
+    "./components/*": "./dist/components/*",
+    "./ui.min.js": "./dist/ui.min.js",
+    "./ui.iife.min.js": "./dist/ui.iife.min.js",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist"],
+  "sideEffects": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "node scripts/build.mjs"
+  },
+  "repository": { "type": "git", "url": "git+https://github.com/ITZjoo/ui-shared-libs.git", "directory": "packages/ui" },
+  "homepage": "https://itzjoo.github.io/ui-shared-libs/docs/",
+  "publishConfig": { "access": "public" }
+}

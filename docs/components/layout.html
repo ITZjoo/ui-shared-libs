@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout · ui-shared-libs</title>
+  <link rel="stylesheet" href="../../packages/ui/dist/ui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+  <script src="../assets/docs.js" defer></script>
+  <script src="../../packages/ui/dist/ui.iife.min.js" defer></script>
+</head>
+<body>
+  <header class="docs-header">
+    <a class="docs-brand" href="../index.html">ui-shared-libs</a>
+    <button type="button" class="ui-btn ui-btn--ghost ui-btn--sm" data-docs-theme>Theme: system</button>
+  </header>
+  <main class="docs-main">
+    <h1>Layout</h1>
+    <p class="docs-lead">Stack, cluster and grid, with a gap scale. The only utilities in the kit.</p>
+
+    <section class="docs-example" aria-labelledby="ex-stack">
+      <h2 id="ex-stack">Stack</h2>
+      <div class="docs-demo docs-demo--stack">
+        <div class="ui-stack" id="stack-default">
+          <span>First</span>
+          <span>Second</span>
+        </div>
+        <div class="ui-stack ui-gap-2" id="stack-gap-2">
+          <span>Tight</span>
+          <span>Tight</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-cluster">
+      <h2 id="ex-cluster">Cluster</h2>
+      <div class="docs-demo">
+        <div class="ui-cluster ui-gap-6" id="cluster-gap-6">
+          <span>One</span>
+          <span>Two</span>
+          <span>Three</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-grid">
+      <h2 id="ex-grid">Grid</h2>
+      <div class="docs-demo docs-demo--stack">
+        <div class="ui-grid" id="grid" style="--ui-grid-min: 12rem">
+          <span>A</span>
+          <span>B</span>
+          <span>C</span>
+          <span>D</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="docs-example" aria-labelledby="ex-sr">
+      <h2 id="ex-sr">Screen-reader only</h2>
+      <div class="docs-demo">
+        <span>Visible text</span>
+        <span class="ui-sr-only" id="sr">Only for screen readers</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
